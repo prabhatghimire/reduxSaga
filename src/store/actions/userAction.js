@@ -10,8 +10,8 @@ import {
   SIGN_UP_SUCCESS,
 } from './actionTypes';
 
-export const signIn = () => {
-  return {type: SIGN_IN};
+export const signIn = ({email, password}) => {
+  return {type: SIGN_IN, payload: {email, password}};
 };
 
 export const signInSuccess = user => {
@@ -22,8 +22,8 @@ export const signInFail = error => {
   return {type: SIGN_IN_FAIL, payload: error};
 };
 
-export const signUp = () => {
-  return {type: SIGN_UP};
+export const signUp = user => {
+  return {type: SIGN_UP, payload: user};
 };
 
 export const signUpSuccess = user => {

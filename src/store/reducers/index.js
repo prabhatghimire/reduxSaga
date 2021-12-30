@@ -4,5 +4,5 @@ import {UserReducer} from './userReducer'
 
 export const RootReducer = combineReducers({
 posts : PostsReducer,
-// user : UserReducer
+user : UserReducer
 });

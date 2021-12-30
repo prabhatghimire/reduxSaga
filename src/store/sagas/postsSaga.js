@@ -29,9 +29,9 @@ function* onGetPostDetails({ payload: id }) {
   }
 }
 
-function* rootSaga() {
+function* postSaga() {
   yield takeLatest(GET_POSTS, onGetPosts);
   yield takeLatest(GET_POST_DETAILS, onGetPostDetails);
 }
 
-export default rootSaga;
+export default postSaga;

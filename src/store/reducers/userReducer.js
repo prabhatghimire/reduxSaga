@@ -22,31 +22,32 @@ export const UserReducer = (state = initialState, action) => {
       return {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_IN_SUCCESS:
-      return {...state, user: action.payload, isLoading: false};
+      state = {...state, user: action.payload, isLoading: false};
       break;
     case SIGN_IN_FAIL:
-      return {...state, error: action.payload, isLoading: false};
+      state = {...state, error: action.payload, isLoading: false};
       break;
     case SIGN_OUT:
-      return {...state, user: action.payload, isLoading: true};
+      state = {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_OUT_SUCCESS:
-      return {...state, user: action.payload, isLoading: false};
+      state = {...state, user: action.payload, isLoading: false};
       break;
     case SIGN_OUT_FAIL:
-      return {...state, error: action.payload, isLoading: false};
+      state = {...state, error: action.payload, isLoading: false};
       break;
     case SIGN_UP:
-      return {...state, user: action.payload, isLoading: true};
+      state = {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_UP_SUCCESS:
-      return {...state, user: action.payload, isLoading: false};
+      state = {...state, user: action.payload, isLoading: false};
       break;
     case SIGN_UP_FAIL:
-      return {...state, error: action.payload, isLoading: false};
+      state = {...state, error: action.payload, isLoading: false};
       break;
     default:
       state = {...state};
       break;
   }
+  return state;
 };
