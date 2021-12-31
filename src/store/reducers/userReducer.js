@@ -13,7 +13,9 @@ import {
 const initialState = {
   user: {},
   isLoading: false,
-  error: {},
+  error: {
+    message : ''
+  },
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -28,10 +30,10 @@ export const UserReducer = (state = initialState, action) => {
       state = {...state, error: action.payload, isLoading: false};
       break;
     case SIGN_OUT:
-      state = {...state, user: action.payload, isLoading: true};
+      state = {...state, isLoading: true};
       break;
     case SIGN_OUT_SUCCESS:
-      state = {...state, user: action.payload, isLoading: false};
+      state = {...state, user: {}, isLoading: false};
       break;
     case SIGN_OUT_FAIL:
       state = {...state, error: action.payload, isLoading: false};

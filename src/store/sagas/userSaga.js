@@ -1,4 +1,4 @@
-import {call, put} from 'redux-saga';
+import {takeLatest, put, call} from 'redux-saga/effects';
 import {
   signInSuccess,
   signInFail,
@@ -9,19 +9,19 @@ import {
 } from '../actions/userAction';
 import {SIGN_IN, SIGN_UP, SIGN_OUT} from '../actions/actionTypes';
 import {signIn, signUp, signOut} from '../../API/userAPI';
-import {takeLatest} from 'redux-saga/effects';
 
-function* onSignIn(payload) {
+function* onSignIn({payload}) {
   try {
-    const response = call(signIn(payload));
+    const response = yield call(signIn, payload);
     yield put(signInSuccess(response));
   } catch (error) {
     yield put(signInFail(error.response));
   }
 }
 
-function* onSignUp() {
-  const response = call(signUp);
+function* onSignUp({payload}) {
+  const response = yield call(signUp, payload);
+  console.log(response)
   yield put(signUpSuccess(response));
   try {
   } catch (error) {
@@ -31,7 +31,7 @@ function* onSignUp() {
 
 function* onSignOut() {
   try {
-    const response = call(signOut);
+    const response = yield call(signOut);
     yield put(signOutSuccess(null));
   } catch (error) {
     yield put(signOutFail(error));

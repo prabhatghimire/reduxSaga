@@ -39,7 +39,7 @@ export const signOut = () => {
 };
 
 export const signOutSuccess = () => {
-  return {type: SIGN_OUT_SUCCESS, payload: none};
+  return {type: SIGN_OUT_SUCCESS};
 };
 
 export const signOutFail = error => {
