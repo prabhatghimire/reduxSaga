@@ -11,6 +11,13 @@ import {
 } from '../actions/actionTypes';
 
 
+const initialState = {
+  user: {},
+  isLoading: false,
+  isError: false,
+  message: '',
+};
+
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGN_IN:
