@@ -7,6 +7,7 @@ import {LoadingScreen} from './loadingScreen';
 import {LoginScreen} from './loginScreen';
 import {signOut} from '../store/actions/userAction';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {RegisterScreen} from './registerScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +43,7 @@ export const StackNavigation = () => {
 
   return (
     <Stack.Navigator>
-      {user.uid ? (
+      {user?.uid ? (
         <>
           <Stack.Screen
             name="Posts"
@@ -72,6 +73,13 @@ export const StackNavigation = () => {
               headerTitleAlign: 'center',
             }}
           />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{
+                headerTitleAlign: 'center',
+              }}
+            />
         </>
       )}
     </Stack.Navigator>

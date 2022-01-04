@@ -10,13 +10,6 @@ import {
   SIGN_UP_SUCCESS,
 } from '../actions/actionTypes';
 
-const initialState = {
-  user: {},
-  isLoading: false,
-  error: {
-    message : ''
-  },
-};
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -24,10 +17,20 @@ export const UserReducer = (state = initialState, action) => {
       return {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_IN_SUCCESS:
-      state = {...state, user: action.payload, isLoading: false};
+      state = {
+        ...state,
+        user: action.payload,
+        isLoading: false,
+        isError: false,
+      };
       break;
     case SIGN_IN_FAIL:
-      state = {...state, error: action.payload, isLoading: false};
+      state = {
+        ...state,
+        message: action.payload,
+        isLoading: false,
+        isError: true,
+      };
       break;
     case SIGN_OUT:
       state = {...state, isLoading: true};
@@ -36,7 +39,12 @@ export const UserReducer = (state = initialState, action) => {
       state = {...state, user: {}, isLoading: false};
       break;
     case SIGN_OUT_FAIL:
-      state = {...state, error: action.payload, isLoading: false};
+      state = {
+        ...state,
+        message: action.payload,
+        isLoading: false,
+        isError: true,
+      };
       break;
     case SIGN_UP:
       state = {...state, user: action.payload, isLoading: true};
@@ -45,7 +53,12 @@ export const UserReducer = (state = initialState, action) => {
       state = {...state, user: action.payload, isLoading: false};
       break;
     case SIGN_UP_FAIL:
-      state = {...state, error: action.payload, isLoading: false};
+      state = {
+        ...state,
+        message: action.payload,
+        isLoading: false,
+        isError: true,
+      };
       break;
     default:
       state = {...state};

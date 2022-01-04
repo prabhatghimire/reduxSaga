@@ -9,23 +9,29 @@ import {
 } from '../actions/userAction';
 import {SIGN_IN, SIGN_UP, SIGN_OUT} from '../actions/actionTypes';
 import {signIn, signUp, signOut} from '../../API/userAPI';
+import * as RootNavigation from '../../RootNavigation'
 
 function* onSignIn({payload}) {
   try {
     const response = yield call(signIn, payload);
     yield put(signInSuccess(response));
+    yield RootNavigation.navigate('Posts');;
   } catch (error) {
-    yield put(signInFail(error.response));
+    const {message} = error
+    yield put(signInFail(message));
   }
 }
 
 function* onSignUp({payload}) {
-  const response = yield call(signUp, payload);
-  console.log(response)
-  yield put(signUpSuccess(response));
   try {
+  const response = yield call(signUp, payload);
+  const {email} = response
+  yield put(signUpSuccess({email}));
+  yield RootNavigation.navigate('Login', {modalVisible: true,});;
+
   } catch (error) {
-    yield put(signUpFail(error));
+    const {message} = error
+    yield put(signUpFail(message));
   }
 }
 
@@ -34,7 +40,8 @@ function* onSignOut() {
     const response = yield call(signOut);
     yield put(signOutSuccess(null));
   } catch (error) {
-    yield put(signOutFail(error));
+    const {message} = error
+    yield put(signOutFail(message));
   }
 }
 
