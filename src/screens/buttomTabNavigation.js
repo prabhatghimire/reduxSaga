@@ -14,39 +14,30 @@ export const ButtomTabNavigation = () => {
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.user);
 
-  const ProfileIcon = () => {
-    return (
-      <View>
-        <Image
-          style={{
-            height: 25,
-            width: 25,
-          }}
-          source={{
-            uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-          }}
-        />
-      </View>
-    );
-  };
-
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        tabBarStyle: {borderTopWidth: 0, elevation: 0},
+      }}>
       <Tab.Screen
         name="Posts"
         component={PostsScreen}
-        options={{tabBarIcon: () => <Icon name="home" size={25} />}}
+        options={{
+          tabBarIcon: () => <Icon name="home" size={20} />,
+          // headerShown: false,
+        }}
       />
       <Tab.Screen
-        name="extra"
+        name="To Do"
         component={UserProfileScreen}
-        options={{tabBarIcon: () => <Icon name="calendar-minus-o" size={25} />}}
+        options={{tabBarIcon: () => <Icon name="calendar-minus-o" size={20} />}}
       />
       <Tab.Screen
-        name="extraextra"
+        name="Group"
         component={UserProfileScreen}
         options={{
-          tabBarIcon: () => <Icon name="users" size={25} />,
+          tabBarIcon: () => <Icon name="users" size={20} />,
         }}
       />
       <Tab.Screen
@@ -54,7 +45,12 @@ export const ButtomTabNavigation = () => {
         component={UserProfileScreen}
         options={{
           tabBarIcon: () => {
-            <ProfileIcon />;
+            <Image
+              style={{height: 25, width: 25, borderRadius: 50}}
+              source={{
+                uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+              }}
+            />;
           },
         }}
       />

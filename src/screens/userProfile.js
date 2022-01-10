@@ -1,21 +1,19 @@
-import React from 'react'
-import {View, TouchableOpacity, Text} from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import {removeState} from '../../App'
-import { signOut } from '../store/actions/userAction'
-
+import React from 'react';
+import {View, TouchableOpacity, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {removeState} from '../../App';
+import {signOut} from '../store/actions/userAction';
 
 export const UserProfileScreen = () => {
-  const {user} = useSelector(state => state.user)
-   const dispatch = useDispatch()
-useSelector
- const LogOut = () => {
-  dispatch(signOut());
-  removeState()
-};
+  const {user} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  useSelector;
+  const LogOut = () => {
+    dispatch(signOut());
+    removeState();
+  };
 
-
-const LogoutButton = () => {
+  const LogoutButton = () => {
     return (
       <View>
         <TouchableOpacity
@@ -38,14 +36,14 @@ const LogoutButton = () => {
     );
   };
 
-
-
-  return(
-    <View><Text>user Profile</Text>
-    <Text>
-      {user.email}
-      {user.displayName}
-    </Text>
-    <LogoutButton /></View>
-  )
-}
+  return (
+    <View style={{flex : 1, backgroundColor: 'white'}}>
+      <Text>user Profile</Text>
+      <Text>
+        {user.email}
+        {user.displayName}
+      </Text>
+      <LogoutButton />
+    </View>
+  );
+};

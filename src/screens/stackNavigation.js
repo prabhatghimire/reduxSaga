@@ -6,8 +6,9 @@ import {signOut} from '../store/actions/userAction';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {RegisterScreen} from './registerScreen';
 import {ButtomTabNavigation} from './buttomTabNavigation';
-import { setState } from '../store/actions/userAction';
-import { getState } from '../../App';
+import {setState} from '../store/actions/userAction';
+import {getState} from '../../App';
+import {PostScreen} from './postScreen';
 const Stack = createNativeStackNavigator();
 
 export const StackNavigation = () => {
@@ -18,15 +19,13 @@ export const StackNavigation = () => {
     dispatch(signOut());
   };
 
-
   const _getUserState = async () => {
     dispatch(setState(await getState()));
   };
-  
+
   // useEffect(() => {
   //   _getUserState();
   // }, [])
-
 
   const LogoutButton = () => {
     return (
@@ -52,27 +51,30 @@ export const StackNavigation = () => {
   };
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0,
+          borderColor: 'white',
+        },
+      }}>
       {user?.uid ? (
         <>
-          <Stack.Screen name="Home" component={ButtomTabNavigation}  options={{ headerShown: false}}/>
+          <Stack.Screen
+            name="Home"
+            component={ButtomTabNavigation}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="Post" component={PostScreen} />
         </>
       ) : (
         <>
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              headerTitleAlign: 'center',
-            }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{
-              headerTitleAlign: 'center',
-            }}
-          />
+          <Stack.Screen name="Login" component={LoginScreen}/>
+          <Stack.Screen name="Register" component={RegisterScreen} />
         </>
       )}
     </Stack.Navigator>

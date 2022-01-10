@@ -19,7 +19,7 @@ function* onSignIn({payload}) {
     if(payload.rememberMe) {
       yield saveState(response)
     }
-    yield RootNavigation.navigate('Home', { screen: 'Posts' });
+    // yield RootNavigation.navigate('Home', { screen: 'Posts' });
   } catch (error) {
     const {message} = error
     yield put(signInFail(message));

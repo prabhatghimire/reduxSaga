@@ -10,7 +10,6 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../store/actions/userAction';
 
-
 export const LoginScreen = ({navigation, route}) => {
   const {user, isError, message} = useSelector(state => state.user);
   const [email, setEmail] = useState('prabhat.ghimire2@gmail.com');
@@ -22,10 +21,8 @@ export const LoginScreen = ({navigation, route}) => {
     dispatch(signIn({email, password, rememberMe}));
   };
 
-
   return (
-    <View>
-  
+    <View style={{flex:1, backgroundColor : 'white'}}>
       <Text>Login Page</Text>
       <TextInput
         placeholder="email"
@@ -48,18 +45,18 @@ export const LoginScreen = ({navigation, route}) => {
           onPress={() => setRememberMe(!rememberMe)}></Pressable>
         <Text>Remember me</Text>
       </View>
-      <Pressable
-        onPress={Login}
-        style={{backgroundColor: 'skyblue', width: 50, margin: 20}}>
+     <View style={{flexDirection:"row"}}>
+     <Pressable onPress={Login} style={styles.buttonStyle}>
         <Text>Login</Text>
       </Pressable>
       <Pressable
         onPress={() => {
           navigation.navigate('Register');
         }}
-        style={{backgroundColor: 'skyblue', width: 80, margin: 20}}>
+        style={styles.buttonStyle}>
         <Text>Register</Text>
       </Pressable>
+     </View>
     </View>
   );
 };
@@ -76,7 +73,15 @@ const styles = StyleSheet.create({
     height: 150,
     padding: 20,
   },
-  buttonStyle: {padding: 10, height: 40, borderRadius: 5},
+  buttonStyle: {
+    margin: 10,
+    height: 40,
+    width: 100,
+    borderRadius: 10,
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   checkBox: {
     borderWidth: 2,
     height: 15,

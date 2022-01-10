@@ -4,7 +4,7 @@ import {Store} from './src/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {StackNavigation} from './src/screens/stackNavigation';
 import {navigationRef} from './src/RootNavigation';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, StatusBar} from 'react-native';
 import {setState} from './src/store/actions/userAction';
 
 export const saveState = async state => {
@@ -12,10 +12,8 @@ export const saveState = async state => {
     if (state.length !== 0) {
       const response = await AsyncStorage.setItem('user', state);
     }
-  }
-  catch(error){
-    console.log(error)
-
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -35,6 +33,10 @@ export const removeState = async key => {
 const App = () => {
   return (
     <Provider store={Store}>
+      <StatusBar
+        backgroundColor="white"
+        barStyle='dark-content'
+      />
       <NavigationContainer ref={navigationRef}>
         <StackNavigation />
       </NavigationContainer>
@@ -43,8 +45,3 @@ const App = () => {
 };
 
 export default App;
-
-//redux saga effects
-//call put delay fork yield
-//select take takeleatest takeEvery
-//cancel

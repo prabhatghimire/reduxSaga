@@ -1,8 +1,17 @@
-import React from "react";
-import {Text, View} from 'react-native'
+import React from 'react';
+import {Text, View, StyleSheet} from 'react-native';
 
 export const LoadingScreen = () => {
-    return (
-        <Text>Loading...</Text>
-    )
-}
+  return (
+    <View style={styles.LoadingContainer}>
+      <Text style={styles.LoadingContent}>Loading...</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  LoadingContainer: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+});

@@ -5,7 +5,7 @@ import {getPostDetails} from '../store/actions/postsAction';
 import {useDispatch} from 'react-redux';
 import {LoadingScreen} from './loadingScreen';
 
-export const postScreen = ({route, navigation}) => {
+export const PostScreen = ({route, navigation}) => {
   const {post, loadingPostDetails} = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const {itemId} = route.params;
@@ -15,7 +15,7 @@ export const postScreen = ({route, navigation}) => {
   }, [itemId]);
 
   return (
-    <View>
+    <View style={{flex:1, backgroundColor : 'white'}}>
       {loadingPostDetails ? (
         <LoadingScreen />
       ) : (

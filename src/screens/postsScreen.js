@@ -17,38 +17,40 @@ export const PostsScreen = ({navigation}) => {
 
   const postsRender = ({item}) => {
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('post', {itemId: item.id})}>
-        <View>
-          <Image
-            source={{uri: item.imageUrl}}
-            style={{width: 50, height: 50}}
-          />
+      <View style={{flex:1}}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Post', {itemId: item.id})}>
           <View>
-            <Text style={{fontSize: 20, textAlign: 'center'}}>
-              {item.title}
-            </Text>
-            <Text>{item.content}</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                padding: 30,
-              }}>
-              <Text>{item.hits}</Text>
-              <Text
-                style={{
-                  backgroundColor: 'skyblue',
-                  width: 50,
-                  borderRadius: 20,
-                  textAlign: 'center',
-                }}>
-                {item.likes}
+            <Image
+              source={{uri: item.imageUrl}}
+              style={{width: 50, height: 50}}
+            />
+            <View>
+              <Text style={{fontSize: 20, textAlign: 'center'}}>
+                {item.title}
               </Text>
+              <Text>{item.content}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 30,
+                }}>
+                <Text>{item.hits}</Text>
+                <Text
+                  style={{
+                    backgroundColor: 'skyblue',
+                    width: 50,
+                    borderRadius: 20,
+                    textAlign: 'center',
+                  }}>
+                  {item.likes}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   };
   return (
@@ -56,10 +58,10 @@ export const PostsScreen = ({navigation}) => {
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text>Hello, {user?.email} </Text>
         <Text style={{marginRight: 20}}>
-          <Icon name="search" size={25}/>
+          <Icon name="search" size={18} />
         </Text>
       </View>
-      <Text style={{fontSize: 30}}>Let's create a perfect Moment</Text>
+      <Text style={{fontSize: 30}}>{`Let's create a\n perfect Moment`}</Text>
       <View>
         <FlatList
           data={posts}
