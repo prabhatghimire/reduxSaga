@@ -12,7 +12,7 @@ import {
   SIGN_UP_SUCCESS,
 } from '../actions/actionTypes';
 
-const initialState = {user : {uid : 1}};
+const initialState = {};
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
