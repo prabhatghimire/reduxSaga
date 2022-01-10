@@ -10,70 +10,22 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../store/actions/userAction';
 
+
 export const LoginScreen = ({navigation, route}) => {
   const {user, isError, message} = useSelector(state => state.user);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('prabhat.ghimire2@gmail.com');
+  const [password, setPassword] = useState('prabhat');
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
 
-  const modelState = route.params?.modalVisible ? true : false;
-
-  const [modalVisible, setModalVisible] = useState(
-    route.params?.modalVisible ? true : false,
-  );
-
-  useEffect(() => {
-    setModalVisible(modelState);
-  }, [modelState]);
-
-  const setEmailFromSignUp = () => {
-    setEmail(user.email);
-    setModalVisible(!modalVisible);
-  };
-
   const Login = () => {
-    dispatch(signIn({email, password}));
+    dispatch(signIn({email, password, rememberMe}));
   };
 
-  const ConformSignUp = () => {
-    setModalVisible(!modalVisible);
-  };
 
-  const [rememberMe, setRememberMe] = useState(false);
   return (
     <View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={styles.ModalContainer}>
-          <View style={styles.modalView}>
-            <Text>Are you sure, you want to sign up with this email?</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                margin: 40,
-              }}>
-              <Pressable
-                onPress={setEmailFromSignUp}
-                style={{...styles.buttonStyle, backgroundColor: 'skyblue'}}>
-                <Text>Yes</Text>
-              </Pressable>
-
-              <Pressable
-                onPress={() => setModalVisible(!modalVisible)}
-                style={{...styles.buttonStyle, backgroundColor: 'red'}}>
-                <Text>No</Text>
-              </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
-
+  
       <Text>Login Page</Text>
       <TextInput
         placeholder="email"

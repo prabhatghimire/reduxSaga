@@ -1,4 +1,5 @@
 import {
+  SET_STORE,
   SIGN_IN,
   SIGN_IN_SUCCESS,
   SIGN_IN_FAIL,
@@ -10,8 +11,12 @@ import {
   SIGN_UP_SUCCESS,
 } from './actionTypes';
 
-export const signIn = ({email, password}) => {
-  return {type: SIGN_IN, payload: {email, password}};
+export const setState = payload => {
+  return {type: SET_STORE, payload: payload};
+};
+
+export const signIn = ({email, password, rememberMe}) => {
+  return {type: SIGN_IN, payload: {email, password, rememberMe}};
 };
 
 export const signInSuccess = user => {

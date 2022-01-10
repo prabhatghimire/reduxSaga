@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {PostsScreen} from './postsScreen';
-import {postScreen} from './postScreen';
 import {useDispatch, useSelector} from 'react-redux';
-import {LoadingScreen} from './loadingScreen';
 import {LoginScreen} from './loginScreen';
 import {signOut} from '../store/actions/userAction';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {RegisterScreen} from './registerScreen';
-
+import {ButtomTabNavigation} from './buttomTabNavigation';
+import { setState } from '../store/actions/userAction';
+import { getState } from '../../App';
 const Stack = createNativeStackNavigator();
 
 export const StackNavigation = () => {
@@ -18,6 +17,17 @@ export const StackNavigation = () => {
   const LogOut = () => {
     dispatch(signOut());
   };
+
+
+  const _getUserState = async () => {
+    dispatch(setState(await getState()));
+  };
+  
+  // useEffect(() => {
+  //   _getUserState();
+  // }, [])
+
+
   const LogoutButton = () => {
     return (
       <View>
@@ -45,24 +55,7 @@ export const StackNavigation = () => {
     <Stack.Navigator>
       {user?.uid ? (
         <>
-          <Stack.Screen
-            name="Posts"
-            component={PostsScreen}
-            options={{
-              headerTitleAlign: 'center',
-              title: 'Posts',
-              headerRight: () => <LogoutButton />,
-            }}
-          />
-          <Stack.Screen
-            name="post"
-            component={postScreen}
-            options={{
-              headerTitleAlign: 'center',
-              title: 'Post',
-              headerRight: () => <LogoutButton />,
-            }}
-          />
+          <Stack.Screen name="Home" component={ButtomTabNavigation}  options={{ headerShown: false}}/>
         </>
       ) : (
         <>
@@ -73,13 +66,13 @@ export const StackNavigation = () => {
               headerTitleAlign: 'center',
             }}
           />
-            <Stack.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{
-                headerTitleAlign: 'center',
-              }}
-            />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={{
+              headerTitleAlign: 'center',
+            }}
+          />
         </>
       )}
     </Stack.Navigator>

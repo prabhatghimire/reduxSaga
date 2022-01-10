@@ -1,4 +1,6 @@
+import {getState} from '../../../App';
 import {
+  SET_STORE,
   SIGN_IN,
   SIGN_IN_SUCCESS,
   SIGN_IN_FAIL,
@@ -10,18 +12,15 @@ import {
   SIGN_UP_SUCCESS,
 } from '../actions/actionTypes';
 
-
-const initialState = {
-  user: {},
-  isLoading: false,
-  isError: false,
-  message: '',
-};
+const initialState = {user : {uid : 1}};
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_STORE:
+      state = {...state, user: action.payload, isLoading: true};
+      break;
     case SIGN_IN:
-      return {...state, user: action.payload, isLoading: true};
+      state = {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_IN_SUCCESS:
       state = {

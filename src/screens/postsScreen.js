@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPosts} from '../store/actions/postsAction';
-import { LoadingScreen } from './loadingScreen';
+import {LoadingScreen} from './loadingScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const PostsScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -12,9 +13,12 @@ export const PostsScreen = ({navigation}) => {
   }, []);
 
   const {posts, loadingPosts} = useSelector(state => state.posts);
+  const {user} = useSelector(state => state.user);
+
   const postsRender = ({item}) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('post',{itemId : item.id})}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('post', {itemId: item.id})}>
         <View>
           <Image
             source={{uri: item.imageUrl}}
@@ -48,13 +52,22 @@ export const PostsScreen = ({navigation}) => {
     );
   };
   return (
-    <View>
-      <FlatList
-        data={posts}
-        renderItem={postsRender}
-        keyExtractor={item => item.id}
-        ListEmptyComponent={LoadingScreen}
-      />
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text>Hello, {user?.email} </Text>
+        <Text style={{marginRight: 20}}>
+          <Icon name="search" size={25}/>
+        </Text>
+      </View>
+      <Text style={{fontSize: 30}}>Let's create a perfect Moment</Text>
+      <View>
+        <FlatList
+          data={posts}
+          renderItem={postsRender}
+          keyExtractor={item => item.id}
+          ListEmptyComponent={LoadingScreen}
+        />
+      </View>
     </View>
   );
 };
