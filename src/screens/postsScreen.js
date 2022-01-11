@@ -62,7 +62,7 @@ export const PostsScreen = ({navigation}) => {
         </Text>
       </View>
       <Text style={{fontSize: 30}}>{`Let's create a\n perfect Moment`}</Text>
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           data={posts}
           renderItem={postsRender}

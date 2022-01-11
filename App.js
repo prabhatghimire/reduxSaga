@@ -7,6 +7,7 @@ import {navigationRef} from './src/RootNavigation';
 import {AsyncStorage, StatusBar} from 'react-native';
 import {setState} from './src/store/actions/userAction';
 
+
 export const saveState = async state => {
   try {
     if (state.length !== 0) {
@@ -17,9 +18,10 @@ export const saveState = async state => {
   }
 };
 
-export const getState = async () => {
+export async function  getState(key) {
   try {
-    const state = await AsyncStorage.getItem('user');
+    const state = await AsyncStorage.getItem(key);
+    console.log(state)
     return JSON.parse(state);
   } catch (error) {
     console.log({error});
@@ -33,10 +35,7 @@ export const removeState = async key => {
 const App = () => {
   return (
     <Provider store={Store}>
-      <StatusBar
-        backgroundColor="white"
-        barStyle='dark-content'
-      />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <NavigationContainer ref={navigationRef}>
         <StackNavigation />
       </NavigationContainer>

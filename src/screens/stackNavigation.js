@@ -20,12 +20,12 @@ export const StackNavigation = () => {
   };
 
   const _getUserState = async () => {
-    dispatch(setState(await getState()));
+    dispatch(setState(await getState('user')));
   };
 
-  // useEffect(() => {
-  //   _getUserState();
-  // }, [])
+  useEffect(() => {
+    _getUserState();
+  }, [])
 
   const LogoutButton = () => {
     return (
@@ -55,12 +55,6 @@ export const StackNavigation = () => {
       screenOptions={{
         headerShadowVisible: false,
         headerTitleAlign: 'center',
-        headerStyle: {
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-          borderColor: 'white',
-        },
       }}>
       {user?.uid ? (
         <>
