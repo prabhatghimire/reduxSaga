@@ -10,7 +10,7 @@ import {
 import {SIGN_IN, SIGN_UP, SIGN_OUT} from '../actions/actionTypes';
 import {signIn, signUp, signOut} from '../../API/userAPI';
 import * as RootNavigation from '../../RootNavigation'
-import {saveState, removeState} from '../../../App'
+import {saveState, removeState} from '../../API/localStorage'
 
 function* onSignIn({payload}) {
   try {
@@ -42,7 +42,7 @@ function* onSignUp({payload}) {
 function* onSignOut() {
   try {
     const response = yield call(signOut);
-    yield put(signOutSuccess({uid : null}));
+    yield put(signOutSuccess({}));
     yield call(removeState('user'))
     yield RootNavigation.navigate('Login');
     

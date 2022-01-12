@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Pressable} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {signUp} from '../store/actions/userAction';
+import {signUp} from '../../store/actions/userAction';
+import {styles} from './style';
 
 export const RegisterScreen = ({navigation}) => {
   const {user, isError, message} = useSelector(state => state.user);
@@ -15,7 +16,7 @@ export const RegisterScreen = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor:'white'}}>
+    <View style={styles.registerScreenContainer}>
       <Text>Register page</Text>
       <TextInput
         placeholder="email"
@@ -29,18 +30,18 @@ export const RegisterScreen = ({navigation}) => {
         secureTextEntry
       />
       {isError ? <Text style={{color: 'red'}}> {message}</Text> : <></>}
-      <Pressable
-        onPress={SignUp}
-        style={{backgroundColor: 'skyblue', width: 80, margin: 20}}>
-        <Text>Register</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => {
-          navigation.navigate('Login');
-        }}
-        style={{backgroundColor: 'skyblue', width: 50, margin: 20}}>
-        <Text>Login</Text>
-      </Pressable>
+      <View style={styles.buttonContainer}>
+        <Pressable onPress={SignUp} style={styles.buttonStyle}>
+          <Text>Register</Text>
+        </Pressable>
+        <Pressable style={styles.buttonStyle}
+          onPress=
+          {() => {
+            navigation.navigate('Login');
+          }}>
+          <Text>Login</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };

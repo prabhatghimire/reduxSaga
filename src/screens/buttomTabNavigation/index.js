@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image, Text, View} from 'react-native';
-import {PostsScreen} from './postsScreen';
-import {postScreen} from './postScreen';
+import {PostsScreen} from '../postsScreen';
+import {postScreen} from '../postScreen';
 import {useDispatch, useSelector} from 'react-redux';
-import {UserProfileScreen} from './userProfile';
+import {UserProfileScreen} from '../userProfile';
+import {GroupScreen} from '../groupScreen'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -49,7 +50,7 @@ export const ButtomTabNavigation = () => {
       />
       <Tab.Screen
         name="Group"
-        component={UserProfileScreen}
+        component={GroupScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Icon name="users" size={20} color={focused ? 'red' : 'black'} />
@@ -64,7 +65,7 @@ export const ButtomTabNavigation = () => {
             <View>
               <Image
                 style={{height: 25, width: 25, borderRadius: 50}}
-                source={require('../../assets/image/profile.jpg')}
+                source={require('../../../assets/image/profile.jpg')}
               />
             </View>
           ),

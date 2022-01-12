@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import { styles } from './style';
 
 export const LoadingScreen = () => {
   return (
@@ -8,10 +9,3 @@ export const LoadingScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  LoadingContainer: {
-    backgroundColor: 'white',
-    alignItems: 'center',
-  },
-});
