@@ -11,6 +11,7 @@ import {SIGN_IN, SIGN_UP, SIGN_OUT} from '../actions/actionTypes';
 import {signIn, signUp, signOut} from '../../API/userAPI';
 import * as RootNavigation from '../../RootNavigation'
 import {saveState, removeState} from '../../API/localStorage'
+import { useToast } from '../../components/toast';
 
 function* onSignIn({payload}) {
   try {
@@ -23,6 +24,7 @@ function* onSignIn({payload}) {
   } catch (error) {
     const {message} = error
     yield put(signInFail(message));
+    // yield call(useToast("fail", message))
   }
 }
 
@@ -36,6 +38,7 @@ function* onSignUp({payload}) {
   } catch (error) {
     const {message} = error
     yield put(signUpFail(message));
+    // yield call(useToast("fail", message))
   }
 }
 
@@ -49,6 +52,7 @@ function* onSignOut() {
   } catch (error) {
     const {message} = error
     yield put(signOutFail(message));
+    // yield call(useToast("fail", message))
   }
 }
 

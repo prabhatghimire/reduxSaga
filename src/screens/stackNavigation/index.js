@@ -6,7 +6,7 @@ import {RegisterScreen} from '../registerScreen';
 import {ButtomTabNavigation} from '../buttomTabNavigation';
 import {setState} from '../../store/actions/userAction';
 import {getState} from '../../API/localStorage';
-import {PostScreen} from '../postScreen';
+import {PostScreen} from '../postDetailScreen';
 
 const Stack = createNativeStackNavigator();
 

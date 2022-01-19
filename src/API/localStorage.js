@@ -1,4 +1,5 @@
 import { AsyncStorage } from "react-native";
+import { useToast } from "../components/toast";
 
 export const saveState = async state => {
     try {
@@ -6,7 +7,7 @@ export const saveState = async state => {
         const response = await AsyncStorage.setItem('user', state);
       }
     } catch (error) {
-      console.log(error);
+      useToast("fail", error)
     }
   };
   
@@ -16,7 +17,7 @@ export const saveState = async state => {
       console.log(state)
       return JSON.parse(state);
     } catch (error) {
-      console.log({error});
+      useToast("fail", {error})
     }
   };
   
@@ -25,6 +26,6 @@ export const saveState = async state => {
         const response = await AsyncStorage.removeItem(key);
     }
     catch(error){
-        console.log('unable to logout from local store', error)
+      useToast("fail", {error})
     }
   };

@@ -6,11 +6,10 @@ import {StackNavigation} from './src/screens/stackNavigation';
 import {navigationRef} from './src/RootNavigation';
 import {StatusBar} from 'react-native';
 
-
-// to do  
+// to do
 //code readability
 // react native best practices
-// error display 
+// error display
 
 const App = () => {
   return (

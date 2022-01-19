@@ -12,7 +12,12 @@ import {
   SIGN_UP_SUCCESS,
 } from '../actions/actionTypes';
 
-const initialState = {user : {uid : 1}};
+const initialState = {
+  user: {uid : 1},
+  isLoading: false,
+  isError: false,
+  message: '',
+};
 
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,7 +25,7 @@ export const UserReducer = (state = initialState, action) => {
       state = {...state, user: action.payload, isLoading: true};
       break;
     case SIGN_IN:
-      state = {...state, user: action.payload, isLoading: true};
+      state = {...state, user: action.payload, isLoading: true, isError : false};
       break;
     case SIGN_IN_SUCCESS:
       state = {

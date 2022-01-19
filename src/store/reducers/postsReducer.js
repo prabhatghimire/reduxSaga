@@ -10,39 +10,39 @@ import {
 const initialState = {
   posts: [],
   post: {},
-  loadingPosts: false,
-  loadingPostDetails: false,
-  error: {
-    message: '',
-  },
+  isLoading: false,
+  isError: false,
+  message: '',
 };
 
 export const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS:
-      state = {...state, loadingPosts: true};
+      state = {...state, isLoading: true};
       break;
-      case GET_POSTS_SUCCESS:
-      state = {...state, posts: action.payload, loadingPosts: false};
+    case GET_POSTS_SUCCESS:
+      state = {...state, posts: action.payload, isLoading: false};
       break;
     case GET_POSTS_FAIL:
       state = {
         ...state,
-        error: action.payload,
-        loadingPosts: false,
+        message: action.payload,
+        isLoading: false,
+        isError: true,
       };
       break;
     case GET_POST_DETAILS:
-      state = {...state, loadingPostDetails: true};
+      state = {...state, post: {}, isLoading: true};
       break;
     case GET_POST_DETAILS_SUCCESS:
-      state = {...state, post: action.payload, loadingPostDetails: false};
+      state = {...state, post: action.payload, isLoading: false};
       break;
     case GET_POST_DETAILS_FAIL:
       state = {
         ...state,
         error: action.payload,
-        loadingPostDetails: false,
+        isLoading: false,
+        isError : true
       };
       break;
     default:
